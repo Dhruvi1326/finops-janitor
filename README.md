@@ -23,6 +23,24 @@ During Phase 2 testing, the script successfully captured real-time CPU utilizati
 - **Library**: `google-cloud-monitoring`
 - **Metric Type**: `compute.googleapis.com/instance/cpu/utilization`
 
+## 🧠 Phase 3: The Autonomous Decision Engine (Final)
+The Janitor has been upgraded with a "Smart Brain" that combines metadata-driven intent with real-time performance metrics.
+
+### 🛡️ Safety & Governance Logic
+To prevent accidental downtime in a production environment, the script follows a strict multi-layered validation:
+1. **Explicit Override**: If `keep_alive: true` is detected, the VM is skipped regardless of activity.
+2. **Intent Verification**: Only VMs labeled as `activity: idle` are considered for shutdown.
+3. **Telemetry Validation**: Even if labeled idle, the VM is spared if CPU usage is > 50% (protecting "ghost" processes).
+
+### ✅ Final Audit Results
+The system was successfully tested in the `us-central1-a` zone:
+- **research-vm-01**: 🛡️ Protected by 'keep_alive' label. (Skipped)
+- **research-vm-02**: 🛑 Truly Idle (CPU: 0.78%). (Shutting Down)
+- **research-vm-03**: 🛑 Truly Idle (CPU: 0.76%). (Shutting Down)
+
+---
+*This project demonstrates a full-cycle FinOps automation workflow: from IaC (Terraform) to Real-time Monitoring and Autonomous Lifecycle Management.*
+
 ### 🚀 Key Capabilities
 
 - **Automated Discovery:** Identifies idle VMs based on customized resource tagging.
@@ -43,3 +61,4 @@ During Phase 2 testing, the script successfully captured real-time CPU utilizati
 1. `terraform apply` to provision the environment.
 2. `python janitor.py` to execute the audit logic.
 3. Review `janitor.log` for the action report.
+4. 4. `terraform destroy` (Optional) to tear down the lab and stop all costs.
