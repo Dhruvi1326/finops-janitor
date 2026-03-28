@@ -11,6 +11,18 @@
 - **Policy Enforcement:** Implements **Metadata-based Exemptions** to protect critical workloads.
 - **Safety Layer:** Global **Dry-Run** functionality to prevent unauthorized state changes.
 
+## 📈 Phase 2: Metric-Driven Intelligence (New)
+To move beyond manual metadata, the Janitor now integrates with **Google Cloud Monitoring** to analyze live telemetry. This allows for data-driven decisions based on actual resource utilization.
+
+### 🩺 Live Telemetry Validation
+During Phase 2 testing, the script successfully captured real-time CPU utilization metrics from the `asia-south1-c` lab environment:
+- **research-vm-02**: 80.54% CPU (Observed during startup burst)
+- **research-vm-03**: 72.36% CPU (Observed during startup burst)
+
+### 🛠️ New Dependencies
+- **Library**: `google-cloud-monitoring`
+- **Metric Type**: `compute.googleapis.com/instance/cpu/utilization`
+
 ### 🚀 Key Capabilities
 
 - **Automated Discovery:** Identifies idle VMs based on customized resource tagging.
