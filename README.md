@@ -2,33 +2,40 @@
 
 > **Cloud-native Python automation to enforce fiscal governance by programmatically managing idle Compute Engine resources.**
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live_Dashboard-blue?style=for-the-badge&logo=streamlit)]
+**(https://finops-janitor-6g6a3stnwvpyfl8mppk96r.streamlit.app/)**
+
 ---
 
 ### 🏛️ Phase 1: Architecture & Governance 
 - **Infrastructure:** Provisioned via **Terraform (IaC)** for environment parity.
-- **Logic Engine:** Python-based scanner using **Google Cloud SDK** for real-time resource auditing.
+- **Logic Engine:** Python-based scanner using **Google Cloud SDK**.
 
 ## 📈 Phase 2: Dynamic Resource Fetching 
-The Janitor is fully integrated with the **Google Cloud Compute Engine API** to audit real-time resource states.
+Fully integrated with the **Google Cloud Compute Engine API** to audit real-time resource states.
 
 ## 🧠 Phase 3: Financial Intelligence & Waste Detection 
-The system calculates the **Total Cost of Idle Resources**, focusing on persistent disk leakage in stopped instances (Monthly Savings Estimate: ₹105.00).
+Calculates the **Total Cost of Idle Resources** (Monthly Savings Estimate: ₹105.00).
 
 ## ☁️ Phase 4: Serverless Deployment 
-Transitioned from local script execution to a **Serverless Architecture** using **Google Cloud Functions (2nd Gen)**.
+Transitioned to **Google Cloud Functions (2nd Gen)** for a stateless, pay-per-use backend.
 
 ## ⏰ Phase 5: Managed Orchestration 
-Implemented **Autonomous Scheduling** to enforce governance without human intervention.
-- **Orchestrator**: Google Cloud Scheduler.
-- **Pattern**: Cron-based triggers (`0 2 * * *`) for daily 2:00 AM audits.
-- **Validation**: Verified successful handshake between Scheduler and Serverless Function via GCP Logs.
+Implemented **Cloud Scheduler** for autonomous daily governance audits.
+
+## 🎨 Phase 6: Executive Dashboard 
+Deployed a public-facing **Streamlit** dashboard for visual cost-oversight.
+- **Visuals**: Interactive Plotly Donut Charts for cost-distribution.
+- **Hosting**: Streamlit Community Cloud (CI/CD linked to GitHub).
+- **Integration**: Real-time HTTP handshake with GCP Serverless backend.
 
 ---
-*This project demonstrates a full-cycle FinOps automation workflow: from IaC (Terraform) to Real-time Monitoring and Autonomous Lifecycle Management.*
-
 ### 🛠️ Tech Stack
 - **Cloud:** Google Cloud Platform (GCP)
-- **Serverless:** Google Cloud Functions / Cloud Run
-- **Scheduling:** Cloud Scheduler (Cron)
-- **Automation:** Python 3.x (`google-cloud-compute`, `functions-framework`)
-- **Infrastructure:** Terraform / HCL
+- **Frontend:** Streamlit / Plotly
+- **Serverless:** Google Cloud Functions
+- **Orchestration:** Cloud Scheduler
+- **Infrastructure:** Terraform
+
+---
+**### 🚀 [VIEW LIVE DASHBOARD] (https://finops-janitor-6g6a3stnwvpyfl8mppk96r.streamlit.app/)**
