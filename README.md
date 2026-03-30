@@ -51,4 +51,4 @@ The system is being upgraded to calculate the **Total Cost of Idle Resources**, 
 1. `terraform apply` to provision the environment.
 2. `python janitor.py` to execute the audit logic.
 3. Review `janitor.log` for the action report.
-4. 4. `terraform destroy` (Optional) to tear down the lab and stop all costs.
+4. `terraform destroy` (Optional) to tear down the lab and stop all costs.
