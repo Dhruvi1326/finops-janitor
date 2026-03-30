@@ -37,6 +37,6 @@ for result in results:
     usage = result.points[0].value.double_value * 100
     print(f"VM: {vm_name} | Current CPU: {usage:.2f}%")
 
-# Add this at the very end of your script
+
 if not list(results):
     print("No CPU data found. Try starting your VMs and waiting 5 minutes!")

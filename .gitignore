@@ -1,3 +1,18 @@
+# GCP Security
+*.json
+credentials.json
+.gcp/
+
+# Python Environment
+__pycache__/
+.venv/
+env/
+.env
+
+# Terraform State (Contains sensitive infra data)
+*.tfstate
+*.tfstate.backup
+.terraform/
 credentials.json
 janitor.log
 *.tfstate

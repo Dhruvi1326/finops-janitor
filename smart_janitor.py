@@ -4,7 +4,7 @@ from google.cloud import compute_v1
 from google.cloud import monitoring_v3
 
 # --- 1. CONFIGURATION ---
-# Ensure these match your GCP Console exactly
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
 project_id = "finops-janitor-lab" 
 zone = "us-central1-a"

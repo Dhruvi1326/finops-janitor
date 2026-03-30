@@ -20,7 +20,7 @@ def display_report():
                 print("The log file is currently empty.")
             else:
                 for line in recent_logs:
-                    # Clean up the line for a nice display
+                    
                     print(line.strip())
         
         print("="*40 + "\n")
