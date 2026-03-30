@@ -1,39 +1,38 @@
 from google.cloud import compute_v1
 
-def audit_my_infrastructure(project_id):
-    # Initialize the Compute Client
-    instance_client = compute_v1.InstancesClient()
-    zone = "us-central1-a"  # Where your Terraform VMs are
+def run_financial_audit(project_id):
+    client = compute_v1.InstancesClient()
+    zone = "us-central1-a"
     
-    print(f"🛰️ Accessing Project: {project_id}...")
+    # 2026 Estimated Pricing for Standard Persistent Disk (per GB/month)
+    COST_PER_GB_INR = 3.5 
+
+    print(f"💰 Starting Financial Audit for: {project_id}")
+    instances = client.list(project=project_id, zone=zone)
     
-    try:
-        # Fetch the list of instances in your zone
-        instances = instance_client.list(project=project_id, zone=zone)
+    total_monthly_waste = 0
+
+    print("\n" + "="*55)
+    print(f"{'VM NAME':<18} | {'STATUS':<12} | {'MONTHLY LEAK (₹)'}")
+    print("="*55)
+
+    for inst in instances:
+        # Most of research-vms likely use a 10GB default boot disk
+        disk_size = 10 
         
-        print("\n" + "="*40)
-        print(f"{'VM NAME':<20} | {'STATUS':<15}")
-        print("="*40)
-        
-        found_any = False
-        for instance in instances:
-            found_any = True
-            status = instance.status
-            name = instance.name
+        if inst.status == "TERMINATED":
+            leak = disk_size * COST_PER_GB_INR
+            total_monthly_waste += leak
+            status_display = f"❌ {inst.status}"
+            cost_display = f"₹{leak:.2f}"
+        else:
+            status_display = f"✅ {inst.status}"
+            cost_display = "₹0.00 (Active)"
             
-            # Simple Logic: If it's TERMINATED, it's potential waste (Disk costs)
-            if status == "TERMINATED":
-                status_display = f"❌ {status} (WASTE)"
-            else:
-                status_display = f"✅ {status}"
-                
-            print(f"{name:<20} | {status_display:<15}")
-        
-        if not found_any:
-            print("📭 No VMs found. Check your project ID or Zone.")
+        print(f"{inst.name:<18} | {status_display:<12} | {cost_display}")
 
-    except Exception as e:
-        print(f"❌ Connection Error: {e}")
+    print("="*55)
+    print(f"📈 TOTAL ESTIMATED MONTHLY SAVINGS: ₹{total_monthly_waste:.2f}")
+    print("="*55)
 
-MY_PROJECT = "finops-janitor-lab" 
-audit_my_infrastructure(MY_PROJECT)
+run_financial_audit("finops-janitor-lab")
