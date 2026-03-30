@@ -4,39 +4,29 @@
 
 ---
 
-### 🏛️ Architecture & Governance
+### 🏛️ Phase 1: Architecture & Governance
 
 - **Infrastructure:** Provisioned via **Terraform (IaC)** for environment parity.
 - **Logic Engine:** Python-based scanner using **Google Cloud SDK** for real-time resource auditing.
 - **Policy Enforcement:** Implements **Metadata-based Exemptions** to protect critical workloads.
 - **Safety Layer:** Global **Dry-Run** functionality to prevent unauthorized state changes.
 
-## 📈 Phase 2: Metric-Driven Intelligence (New)
-To move beyond manual metadata, the Janitor now integrates with **Google Cloud Monitoring** to analyze live telemetry. This allows for data-driven decisions based on actual resource utilization.
+## 📈 Phase 2: Dynamic Resource Fetching (Completed)
+The Janitor has moved beyond static mock data and is now fully integrated with the **Google Cloud Compute Engine API**.
 
-### 🩺 Live Telemetry Validation
-During Phase 2 testing, the script successfully captured real-time CPU utilization metrics from the `asia-south1-c` lab environment:
-- **research-vm-02**: 80.54% CPU (Observed during startup burst)
-- **research-vm-03**: 72.36% CPU (Observed during startup burst)
+### 🩺 Live Inventory Validation
+The script now establishes a secure handshake with the GCP Control Plane to audit real-time resource states:
+- **Project Scope**: `finops-janitor-lab`
+- **Zone**: `us-central1-a`
+- **Discovery**: Successfully retrieved and logged `research-vm-01`, `02`, and `03`.
 
-### 🛠️ New Dependencies
-- **Library**: `google-cloud-monitoring`
-- **Metric Type**: `compute.googleapis.com/instance/cpu/utilization`
+## 🧠 Phase 3: Financial Intelligence & Waste Detection (Active)
+The system is being upgraded to calculate the **Total Cost of Idle Resources**, focusing on unattached storage and persistent disk leakage.
 
-## 🧠 Phase 3: The Autonomous Decision Engine (Final)
-The Janitor has been upgraded with a "Smart Brain" that combines metadata-driven intent with real-time performance metrics.
-
-### 🛡️ Safety & Governance Logic
-To prevent accidental downtime in a production environment, the script follows a strict multi-layered validation:
-1. **Explicit Override**: If `keep_alive: true` is detected, the VM is skipped regardless of activity.
-2. **Intent Verification**: Only VMs labeled as `activity: idle` are considered for shutdown.
-3. **Telemetry Validation**: Even if labeled idle, the VM is spared if CPU usage is > 50% (protecting "ghost" processes).
-
-### ✅ Final Audit Results
-The system was successfully tested in the `us-central1-a` zone:
-- **research-vm-01**: 🛡️ Protected by 'keep_alive' label. (Skipped)
-- **research-vm-02**: 🛑 Truly Idle (CPU: 0.78%). (Shutting Down)
-- **research-vm-03**: 🛑 Truly Idle (CPU: 0.76%). (Shutting Down)
+### 🛡️ Financial Governance Logic
+1. **Status Check**: Identify `TERMINATED` instances.
+2. **Storage Audit**: Calculate the monthly "leak" from persistent boot disks.
+3. **Actionable ROI**: Generate reports showing potential savings in INR (₹) to justify resource cleanup.
 
 ---
 *This project demonstrates a full-cycle FinOps automation workflow: from IaC (Terraform) to Real-time Monitoring and Autonomous Lifecycle Management.*
