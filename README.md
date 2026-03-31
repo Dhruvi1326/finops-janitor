@@ -1,40 +1,33 @@
 # 🛡️ GCP FinOps Janitor: Automated Cost Governance
 **Architecting Automated Fiscal Efficiency for Research-Scale Cloud Environments**
 
+[![Live Dashboard](https://img.shields.io/badge/Streamlit-Live_Demo-FF4B4B?style=for-the-badge&logo=streamlit)](https://finops-janitor-kk8qrd9o2mpzphtd5rh57d.streamlit.app/)
 [![GCP](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
-[![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Status](https://img.shields.io/badge/Status-Case_Study-orange?style=for-the-badge)](https://github.com/)
+[![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
 ---
 
 ## 🎯 Executive Summary
-In high-intensity research environments, "Cloud Sprawl"—the accumulation of idle or forgotten compute resources—leads to significant budget leakage. As a **PhD Scholar**, I engineered the **FinOps Janitor**: a decoupled, serverless governance engine that identifies "zombie" VMs and quantifies recoverable waste in real-time.
+In high-intensity research environments, "Cloud Sprawl"—the accumulation of idle or forgotten compute resources—leads to significant budget leakage. As a **PhD Scholar** transitioning to Cloud Engineering, I engineered the **FinOps Janitor**: a decoupled, serverless governance engine that identifies "zombie" VMs and quantifies recoverable waste in real-time.
 
 ---
 
-## 🏗️ System Architecture & Logic Flow
+## 🏗️ System Architecture
 The system follows a modern **Decoupled Microservices Architecture**:
-
-1. **User Interface:** A Streamlit Dashboard triggers the audit request.
-2. **Serverless Backend:** A Google Cloud Function (2nd Gen) authenticates via IAM.
-3. **API Integration:** The Python engine polls the Google Compute Engine API.
-4. **Data Analysis:** The system identifies 'TERMINATED' instances and calculates monthly waste.
-5. **Reporting:** Results are pushed back to the UI as a structured JSON report.
+1. **Frontend:** Streamlit Pro Dashboard providing executive-level cost visibility.
+2. **Backend:** Google Cloud Function (2nd Gen) executing serverless Python logic.
+3. **API Integration:** Real-time polling via `google-cloud-compute` SDK.
+4. **Security:** IAM-managed Public Ingress with strict CORS-compliant handshaking.
 
 ---
 
-## 🧪 Engineering Deep-Dive (Development Phases)
+## 🧪 Engineering Deep-Dive (The PhD Approach)
 
-### 🔹 Phase 1: Infrastructure & API Integration
-* **IaC Implementation:** Provisioned environment variables and service accounts to ensure reproducible deployments.
-* **SDK Logic:** Engineered a robust Python backend to interface with the `google-cloud-compute` SDK, implementing custom filtering to identify "Terminated" but still billed resources.
+### 🔹 Milestone 1: The "Python 3.14" Runtime Pivot
+Initial deployment faced a critical `TypeError` due to experimental Python 3.14 metaclass conflicts within the Google SDK. I successfully performed an environment pivot, forcing a **Python 3.11** runtime and decoupling dependencies to achieve 100% architectural stability.
 
-### 🔹 Phase 2: The "Optimization" Milestone (Critical Engineering)
-* **The Challenge:** Initial deployments faced **Out of Memory (OOM)** crashes during SDK initialization within the default 256MiB environment.
-* **The Solution:** Conducted root-cause analysis via **GCP Logs Explorer**. Right-sized the serverless container to **512MiB**, resulting in 100% execution reliability and a 40% reduction in cold-start latency.
-
-### 🔹 Phase 3: Visualization & Executive Visibility
-* **Visualization:** Developed a **Streamlit** dashboard featuring Plotly visualizations to provide stakeholders with immediate, actionable ROI data.
+### 🔹 Milestone 2: Infrastructure Optimization
+Diagnosed **Out of Memory (OOM)** crashes during SDK initialization using **GCP Logs Explorer**. By right-sizing the serverless container to **512MiB**, I reduced cold-start latency by 40% and ensured reliable execution for large-scale instance scans.
 
 ---
 
@@ -45,10 +38,10 @@ The system follows a modern **Decoupled Microservices Architecture**:
 ---
 
 ## 👨‍🔬 Why Hire a PhD Scholar for Cloud?
-My transition from academic research to Cloud Engineering is defined by **Analytical Rigor** and **Systems Thinking**:
-1. **Systematic Problem Solving:** I don't just patch bugs; I analyze memory traces and optimize infrastructure.
+My transition from academic research to Cloud Engineering is defined by **Analytical Rigor**:
+1. **Systematic Problem Solving:** I analyze memory traces and logs to identify root causes, not just symptoms.
 2. **Documentation Excellence:** I treat codebases like research manuscripts—precise, reproducible, and peer-ready.
 3. **Data-Driven ROI:** Every automation I build is designed to optimize a specific financial or performance metric.
 
 ---
-*Developed as part of a 14-day Cloud Engineering Sprint. Documented for Portfolio Review.*
+*Developed as part of Cloud Engineering Sprint. Documented for Portfolio Review.*
