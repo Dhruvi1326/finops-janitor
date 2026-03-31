@@ -35,12 +35,19 @@ with left_info:
     if st.button('🚀 EXECUTE CLOUD AUDIT'):
         with st.spinner('Pinging GCP Serverless Function...'):
             try:
-                # Using verified URL
-                url = "https://finops-janitor-function-rswc4fxswq-uc.a.run.app"
-                response = requests.get(url)
-                st.success("Audit Successful")
-                st.info("Live Report Data:")
-                st.code(response.text)
+                
+                url = "https://us-central1-finops-janitor-lab.cloudfunctions.net/finops-janitor-function"
+                
+                response = requests.get(url, timeout=10)
+                
+                if response.status_code == 200:
+                    st.success("Audit Successful")
+                    # Displaying as a professional table
+                    data = response.json()
+                    st.table(data['audit_results'])
+                else:
+                    st.error(f"GCP returned an error: {response.status_code}")
+                    
             except Exception as e:
                 st.error(f"Handshake Failed: {e}")
 
@@ -54,7 +61,8 @@ with right_viz:
         marker_colors=['#FF4B4B', '#00CC96']
     )])
     fig.update_layout(margin=dict(t=0, b=0, l=0, r=0), showlegend=True)
-    st.plotly_chart(fig, use_container_width=True)
+    # Updated width setting to prevent console warnings
+    st.plotly_chart(fig, width='stretch')
 
 # 4. Sidebar Meta-Data
 st.sidebar.title("System Metadata")
