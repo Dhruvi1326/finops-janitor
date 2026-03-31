@@ -2,8 +2,6 @@
 **Architecting Automated Fiscal Efficiency for Research-Scale Cloud Environments**
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live_Dashboard-blue?style=for-the-badge&logo=streamlit)](https://finops-janitor-6g6a3stnwvpyfl8mppk96r.streamlit.app/)
-[![GCP](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
-[![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
 ---
 
