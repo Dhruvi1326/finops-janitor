@@ -8,13 +8,9 @@
 ## 🎯 Executive Summary
 In high-intensity research environments, "Cloud Sprawl"—the accumulation of idle or forgotten compute resources—leads to significant budget leakage. As a **PhD Scholar**, I engineered the **FinOps Janitor**: a decoupled, serverless governance engine that identifies "zombie" VMs and quantifies recoverable waste in real-time.
 
----
-
 ## 🏗️ System Architecture & Logic Flow
 The system follows a modern **Decoupled Microservices Architecture**, ensuring high scalability with zero cost when idle.
 
-```mermaid
-graph TD
     A[User / Researcher] -->|Triggers Audit| B(Streamlit Dashboard)
     B -->|Authenticated HTTP POST| C[GCP Cloud Function 2nd Gen]
     C -->|IAM Service Account| D[Compute Engine API]
