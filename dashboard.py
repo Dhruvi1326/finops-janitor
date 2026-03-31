@@ -41,23 +41,14 @@ with left_info:
                 
                 if response.status_code == 200:
                     st.success("Audit Successful")
-                    try:
-                        data = response.json()
-                        if "audit_results" in data:
-                            st.table(data['audit_results'])
-                        else:
-                            st.info("Raw Data Received:")
-                            st.json(data)
-                    except Exception:
-                        st.warning("Audit complete, but response was not in JSON format.")
-                        st.text(f"Raw Output: {response.text}")
+                    # Clean UI: Displaying the text report directly
+                    st.markdown("### 📋 Real-Time Resource Report")
+                    st.info(response.text)
                 else:
                     st.error(f"GCP Access Error ({response.status_code})")
                     
             except Exception as e:
-                # This only triggers if the URL is wrong or the internet is down
-                st.error(f"Connection Failed: Check GCP Trigger URL")
-
+                st.error(f"Connection Failed: Ensure Trigger is Public")
 with right_viz:
     st.subheader("📊 Cost Distribution")
     fig = go.Figure(data=[go.Pie(
