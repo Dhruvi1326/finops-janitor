@@ -1,26 +1,30 @@
 import functions_framework
 from google.cloud import compute_v1
+import json
 
 @functions_framework.http
 def finops_janitor_audit(request):
-    client = compute_v1.InstancesClient()
+    """The Final Stable Auditor: Scans GCP and returns JSON data."""
     project_id = "finops-janitor-lab"
     zone = "us-central1-a"
-    COST_PER_GB_INR = 3.5 
     
-    instances = client.list(project=project_id, zone=zone)
-    total_waste = 0
-    results = []
-
-    for inst in instances:
-        if inst.status == "TERMINATED":
-            leak = 10 * COST_PER_GB_INR
-            total_waste += leak
-            results.append(f"❌ {inst.name}: Waste ₹{leak:.2f}")
-        else:
-            results.append(f"✅ {inst.name}: Active")
+    try:
+        client = compute_v1.InstancesClient()
+        instances = client.list(project=project_id, zone=zone)
+        
+        report = []
+        for instance in instances:
+            # FinOps Logic: Estimate waste for unused capacity
+            waste = 105.00 if instance.status == "TERMINATED" else 0.00
+            report.append({
+                "name": instance.name,
+                "status": instance.status,
+                "machine_type": instance.machine_type.split('/')[-1],
+                "waste_estimate_inr": waste
+            })
+        
+        return json.dumps({"audit_results": report}), 200, {'Content-Type': 'application/json'}
     
-    summary = f"\n📈 TOTAL MONTHLY SAVINGS: ₹{total_waste:.2f}"
-    full_report = "\n".join(results) + "\n" + "="*30 + summary
-    
-    return full_report, 200
+    except Exception as e:
+        print(f"ERROR: {str(e)}")
+        return json.dumps({"error": str(e)}), 500, {'Content-Type': 'application/json'}
