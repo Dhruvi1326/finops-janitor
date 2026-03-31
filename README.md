@@ -1,7 +1,9 @@
 # 🛡️ GCP FinOps Janitor: Automated Cost Governance
 **Architecting Automated Fiscal Efficiency for Research-Scale Cloud Environments**
 
-[![Live Dashboard](https://img.shields.io/badge/Streamlit-Live_Demo-FF4B4B?style=for-the-badge&logo=streamlit)](https://finops-janitor-kk8qrd9o2mpzphtd5rh57d.streamlit.app/)
+[![Live Dashboard](https://finops-janitor-sfm2znlwkk46bajtzmnubs.streamlit.app/
+<img width="638" height="31" alt="image" src="https://github.com/user-attachments/assets/db3c17f7-a378-4635-bf81-095764fc841f" />
+)
 [![GCP](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
